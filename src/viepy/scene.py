@@ -1,6 +1,6 @@
-import typing
+from typing import List
 from dataclasses import dataclass, field
-from .object import Object
+from .objects import Object
 from .audio import Audio
 
 @dataclass
@@ -9,8 +9,8 @@ class Scene:
     height: int = 720
     fps: int = 60
     anti_aliasing: bool = True
-    objects: typing.List[Object] = field(default_factory=list)
-    audio_channels: typing.List[typing.List[Audio]] = field(default_factory=list)
+    objects: List[Object] = field(default_factory=list)
+    audio_channels: List[List[Audio]] = field(default_factory=list)
     final_delay: float | None = None
     duration: float | None = None
 

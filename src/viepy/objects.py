@@ -17,27 +17,42 @@ class Object:
     effect: Optional[str] = field(default=None, init=False)
     audio_channel: int = field(default=0, init=False)
 
-    def apply_react(self, effect: str = "pulse", audio_channel: int = 0, property: str = "scale") -> None:
+    def apply_react(
+        self,
+        effect: str = "pulse",
+        audio_channel: int = 0,
+        property: str = "scale"
+    ) -> None:
         """
         Binds an audio reaction effect to this object.
-        Example: obj.apply_react(effect="pulse", audio_channel=1, property=scale)
         """
         self.effect = effect
         self.audio_channel = audio_channel
         self.react_property = property
 
+
 @dataclass
 class Rectangle(Object):
-    width: float = 0.0
-    height: float = 0.0
+    width: float = 100.0
+    height: float = 100.0
 
 
 @dataclass
 class Triangle(Object):
-    size_1: float = 1.0
-    size_2: float = 1.0
-    size_3: float = 1.0
+    size: float = 100.0
+    
+    @property
+    def points(self):
+        x = self.scale[0] / 2
+        y = self.scale[1] / 2
+
+        self.points = [
+            (self.x, self.y - y),
+            (self.x - x, self.y + y),
+            (self.x + x, self.y + y)
+        ]
+
 
 @dataclass
 class Circle(Object):
-    radius: float = 1.0
+    radius: float = 50.0

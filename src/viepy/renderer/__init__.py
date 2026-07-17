@@ -1,18 +1,21 @@
-import skia
-import subprocess
+# Copyright 2026 Cleverton Costa Santiago Júnior
+# Licensed under the Apache License, Version 2.0 (the "License");
+# 
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#     https://www.apache.org/licenses/LICENSE-2.0
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# 
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+from .draw import draw
 from numpy import ceil
 from pathlib import Path
 from ..scene import Scene
-from ..object import Circle, Triangle, Rectangle
 import shutil
-
-colors = {
-    "red": skia.ColorRED,
-    "blue": skia.ColorBLUE,
-    "green": skia.ColorGREEN,
-    "white": skia.ColorWHITE,
-    "black": skia.ColorBLACK,
-}
 
 def render(scene: Scene, keep_frames: bool):
     # Checar ffmpeg
@@ -23,10 +26,6 @@ def render(scene: Scene, keep_frames: bool):
         )
     
     # Setando variaveis úteis
-    scene_width, scene_height = scene.width, scene.height
-    objects = scene.objects
-    anti_aliasing = scene.anti_aliasing
-    duration = scene.duration
     fps = scene.fps
     final_delay = 0 if scene.final_delay is None else scene.final_delay
 
@@ -37,81 +36,28 @@ def render(scene: Scene, keep_frames: bool):
         exist_ok=True
     )
 
-    if (duration is None) and (not scene.music_channels or not scene.music_channels[0]):
+    if (scene.duration is None) and (not scene.music_channels or not scene.music_channels[0]):
         raise ValueError("Scene has no duration. Specify duration or add a Music to channel 0.")
     else:
-        if duration is None:
-            duration = max(
+        if scene.duration is None:
+            scene.duration = max(
                 audio.duration
                 for audio in scene.music_channels[0]
             )
     
-    frames = ceil((duration + final_delay) * fps)
-    
-    # Render real
+    frames = ceil((scene.duration + final_delay) * fps)
+
+    # render
     for frame in range(frames):
         current_time = frame / fps
-
-        surface = skia.Surface(scene_width, scene_height)
-        canvas = surface.getCanvas()
-
-        canvas.clear(skia.ColorWHITE)
-
-        for obj in objects:
-            paint = skia.Paint(
-                Color=colors.get(
-                    obj.color,
-                    skia.ColorBLACK
-                )
-            )
-            paint.setAntiAlias(anti_aliasing) 
-
-            if isinstance(obj, Rectangle):
-                rect = skia.Rect.MakeXYWH(
-                    obj.x + scene_width / 2,
-                    obj.y + scene_height / 2,
-                    obj.width,
-                    obj.height
-                )
-                canvas.drawRect(rect, paint)
-            elif isinstance(obj, Circle):
-                canvas.drawCircle(
-                    obj.x + scene_width / 2,
-                    obj.y + scene_height / 2,
-                    obj.radius,
-                    paint
-                )
-            else:
-                raise Exception(f"The object '{obj}' isn't a valid object")
-
-        image = surface.makeImageSnapshot()
+        image = draw()
         image.save(str(output / f"frame{frame:06d}.png"))
     
-    try:
-        video = subprocess.run(
-            [
-                "ffmpeg",
-                "-framerate",
-                str(fps),
-                "-i",
-                str(output / "frame%06d.png"),
-                "-c:v",
-                "libx264",
-                "-pix_fmt",
-                "yuv420p",
-                "-y",
-                str(output / f"{scene_width}x{scene_height}-{fps}.mp4")
-            ], check=True, capture_output=True, text=True
-        )
-    except Exception:
-        if not keep_frames:
-            for frame in output.glob("frame*.png"):
-                frame.unlink()
-        
-        raise RuntimeError(f"FFmpeg don't worked: {video.stdout}")
-    
+    # ffmpeg
+    render(scene, keep_frames)
+
     if not keep_frames:
         for frame in output.glob("frame*.png"):
             frame.unlink()
 
-    return output / f"{scene_width}x{scene_height}-{fps}.mp4"
+    return output / f"{scene.width}x{scene.height}-{fps}.mp4"

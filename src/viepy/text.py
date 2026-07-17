@@ -1,9 +1,11 @@
-import typing
+from typing import List, Optional
 from dataclasses import dataclass, field, InitVar
-from .object import Object
+from .objects import Object
 from .audio import Music
-
+from skia import FontStyle
 from enum import Enum
+from subprocess import run
+from pathlib import Path
 
 class TextStyle(Enum):
     BOLD = "bold"
@@ -14,9 +16,10 @@ class TextStyle(Enum):
 @dataclass
 class Text(Object):
     text: str = "Hello Viepy!"
-    style: typing.List[TextStyle] = field(default_factory=list)
+    style: List[TextStyle] = field(default_factory=list)
+    font: Optional[FontStyle] = None
 
-    def replace_style(self, style: typing.List[str | TextStyle]):
+    def replace_style(self, style: List[str | TextStyle]):
         self.style = [
             s if isinstance(s, TextStyle) else TextStyle(s)
             for s in style
@@ -44,6 +47,37 @@ class Text(Object):
         self.style.clear()
 
         return self
+    
+    def add_font(self, path_file: str):
+        run([
+            "cp",
+            str(path_file),
+            str(Path("./assets/fonts/"))
+        ])
+    
+    def remove_font_ttf(self, font):
+        fonts = Path("./assets/fonts/")
+        i = 0
+        for f in fonts.glob('*.ttf'):
+            if f == font:
+                run([
+                    "rm",
+                    f"{fonts}/{f}"
+                ])
+                break
+            i += 1
+
+    def remove_font_otf(self, font):
+        fonts = Path("./assets/fonts/")
+        i = 0
+        for f in fonts.glob('*.otf'):
+            if f == font:
+                run([
+                    "rm",
+                    f"{fonts}/{f}"
+                ])
+                break
+            i += 1
 
 @dataclass
 class Artist(Text):
