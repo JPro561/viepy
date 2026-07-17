@@ -1,0 +1,13 @@
+pyproject.toml
+setup.py
+src/viepy/__init__.py
+src/viepy/audio.py
+src/viepy/object.py
+src/viepy/scene.py
+src/viepy/text.py
+src/viepy.egg-info/PKG-INFO
+src/viepy.egg-info/SOURCES.txt
+src/viepy.egg-info/dependency_links.txt
+src/viepy.egg-info/requires.txt
+src/viepy.egg-info/top_level.txt
+src/viepy/renderer/__init__.py
