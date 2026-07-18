@@ -1,7 +1,0 @@
-pyproject.toml
-setup.py
-viepy.egg-info/PKG-INFO
-viepy.egg-info/SOURCES.txt
-viepy.egg-info/dependency_links.txt
-viepy.egg-info/requires.txt
-viepy.egg-info/top_level.txt
