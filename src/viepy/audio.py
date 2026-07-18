@@ -1,11 +1,12 @@
 from typing import Union, Optional
 from pydub import AudioSegment
-import pathlib
+from pathlib import Path
 from dataclasses import dataclass, field
+from .Exceptions import AudioError
 
 @dataclass
 class Audio:
-    path: Union[str, pathlib.Path] = None
+    path: Union[str, Path] = None
     name: str = "Music"
     auto_play: bool = False
     playing: bool = False
@@ -19,13 +20,13 @@ class Audio:
         if not self.playing:
             self.playing = True
         else:
-            raise Exception("The music is playing. It is impossible to play again the same Audio.")
+            raise AudioError("The music is playing. It is impossible to play again the same Audio.")
     
     def Stop(self):
         if self.playing:
             self.playing = False
         else:
-            raise Exception("The music isn't playing. It is impossible to stop an audio that isn't playing.")
+            raise AudioError("The music isn't playing. It is impossible to stop an audio that isn't playing.")
 
 @dataclass
 class Music(Audio):

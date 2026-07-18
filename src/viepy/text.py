@@ -6,6 +6,8 @@ from skia import FontStyle
 from enum import Enum
 from subprocess import run
 from pathlib import Path
+from shutil import copy
+from .Exceptions import TextError
 
 class TextStyle(Enum):
     BOLD = "bold"
@@ -47,37 +49,6 @@ class Text(Object):
         self.style.clear()
 
         return self
-    
-    def add_font(self, path_file: str):
-        run([
-            "cp",
-            str(path_file),
-            str(Path("./assets/fonts/"))
-        ])
-    
-    def remove_font_ttf(self, font):
-        fonts = Path("./assets/fonts/")
-        i = 0
-        for f in fonts.glob('*.ttf'):
-            if f == font:
-                run([
-                    "rm",
-                    f"{fonts}/{f}"
-                ])
-                break
-            i += 1
-
-    def remove_font_otf(self, font):
-        fonts = Path("./assets/fonts/")
-        i = 0
-        for f in fonts.glob('*.otf'):
-            if f == font:
-                run([
-                    "rm",
-                    f"{fonts}/{f}"
-                ])
-                break
-            i += 1
 
 @dataclass
 class Artist(Text):
@@ -87,7 +58,7 @@ class Artist(Text):
         if music is not None:
             self.text = music.artist
         else:
-            raise ValueError("Music not specified in the Artist() text class.")
+            raise TextError("Music not specified in the Artist() text class.")
 
 @dataclass
 class Music_Name(Text):
@@ -97,4 +68,26 @@ class Music_Name(Text):
         if music is not None:
             self.text = getattr(music, 'title', getattr(music, 'name', 'Unknown Title'))
         elif music is None:
-            raise ValueError("Music not specified in the Music_Name() text class.")
+            raise TextError("Music not specified in the Music_Name() text class.")
+
+class FontManager():
+    fonts_path: str | Path = Path(__file__).parent.parent / "assets" / "fonts"
+
+    def add_font(self, path_file: str):
+        copy(path_file, self.fonts_path)
+    
+    def remove_font_ttf(self, font):
+        i = 0
+        for f in self.fonts_path.glob('*.ttf'):
+            if f == font:
+                f.unlink()
+                break
+            i += 1
+
+    def remove_font_otf(self, font):
+        i = 0
+        for f in self.fonts_path.glob('*.otf'):
+            if f == font:
+                f.unlink()
+                break
+            i += 1

@@ -11,8 +11,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from .objects import Object, Rectangle, Circle, Triangle
-from .audio import Music, Sound_Effect
-from .text import Text, Artist, Music_Name
-from .scene import Scene
-from .renderer import render
+from . import objects, audio, Exceptions, scene, text, renderer

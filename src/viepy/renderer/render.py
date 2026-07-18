@@ -1,49 +1,49 @@
-from ..scene import Scene
-from subprocess import run
+from .advanced import draw, ffmpeg
+from numpy import ceil
 from pathlib import Path
+from ..scene import Scene
+from shutil import which
+from ..Exceptions import RenderError
 
-def render(scene: Scene, output: Path, fps, keep_frames: bool):
-    try:
-        # ffmpeg -framerate {fps} -i {path} -c:v libx264 -pix_fmt yuv420p -y {output}
-        video = run(
-            [
-                "ffmpeg",
-                "-framerate",
-                str(fps),
-                "-i",
-                str(output / "frame%06d.png"),
-                "-c:v",
-                "libx264",
-                "-pix_fmt",
-                "yuv420p",
-                "-y",
-                str(output / f"{scene.width}x{scene.height}-{fps}.mp4")
-            ], check=True, capture_output=True, text=True
+def render(scene: Scene, keep_frames: bool):
+    if which("ffmpeg") is None:
+        raise RenderError(
+            "FFmpeg was not found. To run viepy, please install FFmpeg and add it in your PATH."
+            "More informations in viepy Docs."
         )
-        if scene.audio_channels:
-            # ffmpeg -i video.mp4 -i audio.mp3 -c:v copy -c:a aac -map 0:v:0 -map 1:a:0 -y output.mp4
-            for channel in scene.audio_channels:
-                for audio in channel:
-                    video = run(
-                        [
-                            "ffmpeg",
-                            "-i",
-                            str(output / f"{scene.width}x{scene.height}-{fps}.mp4"),
-                            "-i",
-                            str(audio.path),
-                            "-c:v",
-                            "aac",
-                            "-map",
-                            "0:v:0",
-                            "-map",
-                            "1:v:0",
-                            "-y",
-                            str(output / f"{scene.width}x{scene.height}-{fps}.mp4")
-                        ], check=True, capture_output=True, text=True
-                    )
-    except Exception:
-        if not keep_frames:
-            for frame in output.glob("frame*.png"):
-                frame.unlink()
-        
-        raise RuntimeError(f"FFmpeg don't worked: {video.stdout}")
+    
+    fps = scene.fps
+    final_delay = 0 if scene.final_delay is None else scene.final_delay
+
+    output = Path(f"viepy/videos/{scene.width}x{scene.height}/")
+
+    output.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
+    if (scene.duration is None) and (not scene.music_channels or not scene.music_channels[0]):
+        raise ValueError("Scene has no duration. Specify duration or add a Music to channel 0.")
+    else:
+        if scene.duration is None:
+            scene.duration = max(
+                audio.duration
+                for audio in scene.music_channels[0]
+            )
+    
+    frames = ceil((scene.duration + final_delay) * fps)
+
+    # render
+    for frame in range(frames):
+        current_time = frame / fps
+        image = draw(scene)
+        image.save(str(output / f"frame{frame:06d}.png"))
+    
+    # ffmpeg
+    ffmpeg(scene, keep_frames)
+
+    if not keep_frames:
+        for frame in output.glob("frame*.png"):
+            frame.unlink()
+
+    return output / f"{scene.width}x{scene.height}-{fps}.mp4"

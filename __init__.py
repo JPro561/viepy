@@ -11,6 +11,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from .src.viepy import audio, objects, text
-from .src.viepy.scene import Scene
-from .src.viepy.renderer import render
+from .src.viepy import *

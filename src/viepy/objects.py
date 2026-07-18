@@ -1,5 +1,12 @@
 from dataclasses import dataclass, field
-from typing import Tuple, Optional
+from typing import Optional, List
+
+@dataclass
+class Transform:
+    x: float = 0.0
+    y: float = 0.0
+    rotate: float = 0.0
+    scale: List[float, float] = (1.0, 1.0)
 
 @dataclass
 class Object:
@@ -7,11 +14,11 @@ class Object:
     The origin class to all the objects.
     Example: obj = Object(x=0, y=0, rotate=90)
     """
-    x: float = 0.0
-    y: float = 0.0
+    transform: Transform = field(default_factory=Transform(0, 0, 0, (1, 1)))
+    z_index: int = 0
     color: str = "blue"
-    rotate: float = 0.0
-    scale: Tuple[float, float] = (1.0, 1.0)
+    visible: bool = True
+    opacity: float = 1.0
 
     react_property: Optional[str] = field(default=None, init=False)
     effect: Optional[str] = field(default=None, init=False)
@@ -56,3 +63,7 @@ class Triangle(Object):
 @dataclass
 class Circle(Object):
     radius: float = 50.0
+
+@dataclass
+class Group(Object):
+    objects: List[Object] = field(default_factory=list)
