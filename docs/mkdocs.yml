@@ -1,0 +1,13 @@
+site_name: Viepy Docs
+nav:
+  - Home: index.md
+
+theme:
+  name: shadcn
+  icon: null
+  show_title: false
+  show_stargazers: false
+  accent: ""
+
+extra_css:
+  - css/custom.css
