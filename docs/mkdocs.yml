@@ -1,13 +1,10 @@
 site_name: Viepy Docs
 nav:
-  - Home: index.md
+  - Viepy: index.md
+  - Get Started: get_started.md
 
 theme:
-  name: shadcn
-  icon: null
-  show_title: false
-  show_stargazers: false
-  accent: ""
+  name: mkdocs
 
 extra_css:
   - css/custom.css
