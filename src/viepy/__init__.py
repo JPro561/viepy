@@ -11,4 +11,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from . import objects, audio, Exceptions, scene, text, renderer
+from .scene import Scene
+from .objects import (
+    Object,
+    Transform,
+    Rectangle,
+    Circle,
+    Triangle,
+    Group,
+)
+from .text import (
+    Text,
+    Artist,
+    Music_Name,
+    TextStyle,
+    FontManager,
+)
+from .audio import Audio, Music
+from .renderer import render, advanced

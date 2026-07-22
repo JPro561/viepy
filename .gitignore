@@ -1,38 +1,19 @@
-# Python
 __pycache__/
 *.py[cod]
 *.so
-
-# Build
 build/
 dist/
 *.egg-info/
-
-# Virtual environments
 .venv/
 venv/
 env/
-
-# IDEs
 .vscode/
 .idea/
-
-# macOS
 .DS_Store
-
-# Test outputs
+.viepy
 videos/
 frames/
-
-# Logs
 *.log
-
-# Pytest
 .pytest_cache/
-
-# Coverage
 .coverage
 htmlcov/
-
-# Jupyter
-.ipynb_checkpoints/

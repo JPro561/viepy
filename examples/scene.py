@@ -5,29 +5,28 @@ fm = vie.text.FontManager()
 
 # Args
 scene = vie.Scene(
+    name="vieExample_Scene",
     width=1280,
     height=720,
-    fps=60,
+    fps=24,
     anti_aliasing=True,
-    objects=[],
-    audio_channels=[],
     final_delay=0.2,
-    duration=10,
     font_manager=fm
 )
 
-# Objects
-circle = vie.objects.Circle(vie.objects.Transform(0, 0, 0, (1, 1)))
-
-scene.add(circle)
-scene.remove(circle)
-scene.clear()
-
 # Audio
-audio = vie.audio.Audio()
+music = vie.audio.Music(path="examples/assets/Viepy.mp3", name="Viepy Theme", auto_play=True, artist="TuneWave")
 
-scene.create_channel(1)
-scene.add_audio_to_channel(audio, 1)
+scene.add_audio_to_channel(music, 0)
+
+# Objects
+circle = vie.objects.Circle(vie.objects.Transform(0, -20, 0, (1, 1)))
+triangle = vie.objects.Triangle(vie.objects.Transform(0, 20, 0, (1, 1)))
+rect = vie.objects.Rectangle(vie.objects.Transform(50, 0, 0, (1, 1)))
+text = vie.text.Music_Name(vie.objects.Transform(0, 0, 0, (1, 1)), music=music)
+
+scene.add(circle, triangle, rect, text)
+scene.remove(circle)
 
 # Render to video
-vie.render(scene, False)
+open(vie.renderer.render(scene, True))

@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "viepy"
 version = "0.0.1b0"
@@ -10,9 +14,18 @@ classifiers = [
     "Programming Language :: Python :: 3",
 ]
 dependencies = [
-    "skia-python>=144.0.0",
+    "skia-python>=128.0b9",
     "numpy>=2.4.6",
     "pydub>=0.25.1"
 ]
 readme = "README.md"
 license = "Apache-2.0"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+viepy = [
+    "assets/fonts/*.ttf",
+    "assets/fonts/*.otf"
+]

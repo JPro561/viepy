@@ -19,7 +19,8 @@ class TextStyle(Enum):
 class Text(Object):
     text: str = "Hello Viepy!"
     style: List[TextStyle] = field(default_factory=list)
-    font: Optional[FontStyle] = None
+    font: Optional[str | Path] = None
+    size: float = 24.0
 
     def replace_style(self, style: List[str | TextStyle]):
         self.style = [
@@ -71,23 +72,26 @@ class Music_Name(Text):
             raise TextError("Music not specified in the Music_Name() text class.")
 
 class FontManager():
-    fonts_path: str | Path = Path(__file__).parent.parent / "assets" / "fonts"
+    def __init__(self):
+        self.fonts_path = (
+            Path(__file__).parent.parent
+            / "viepy"
+            / "assets"
+            / "fonts"
+        )
 
     def add_font(self, path_file: str):
         copy(path_file, self.fonts_path)
     
-    def remove_font_ttf(self, font):
-        i = 0
-        for f in self.fonts_path.glob('*.ttf'):
-            if f == font:
-                f.unlink()
-                break
-            i += 1
+    def remove_font(self, font: str | Path):
+        font = Path(font)
 
-    def remove_font_otf(self, font):
-        i = 0
-        for f in self.fonts_path.glob('*.otf'):
-            if f == font:
-                f.unlink()
-                break
-            i += 1
+        if not font.is_absolute():
+            font = self.fonts_path / font
+
+        if not font.exists():
+            raise TextError(
+                f"Font does not exist: {font}"
+            )
+
+        font.unlink()

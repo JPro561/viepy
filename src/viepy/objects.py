@@ -6,7 +6,7 @@ class Transform:
     x: float = 0.0
     y: float = 0.0
     rotate: float = 0.0
-    scale: List[float, float] = (1.0, 1.0)
+    scale: List[float] = field(default_factory=lambda: [1.0, 1.0])
 
 @dataclass
 class Object:
@@ -14,7 +14,7 @@ class Object:
     The origin class to all the objects.
     Example: obj = Object(x=0, y=0, rotate=90)
     """
-    transform: Transform = field(default_factory=Transform(0, 0, 0, (1, 1)))
+    transform: Transform = field(default_factory=Transform)
     z_index: int = 0
     color: str = "blue"
     visible: bool = True
@@ -43,22 +43,15 @@ class Rectangle(Object):
     width: float = 100.0
     height: float = 100.0
 
-
 @dataclass
 class Triangle(Object):
-    size: float = 100.0
-    
-    @property
-    def points(self):
-        x = self.scale[0] / 2
-        y = self.scale[1] / 2
-
-        self.points = [
-            (self.x, self.y - y),
-            (self.x - x, self.y + y),
-            (self.x + x, self.y + y)
+    points: List[tuple] = field(
+        default_factory=lambda: [
+            (0, -50),
+            (-50, 50),
+            (50, 50)
         ]
-
+    )
 
 @dataclass
 class Circle(Object):
