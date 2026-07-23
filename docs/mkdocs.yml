@@ -1,10 +1,15 @@
 site_name: Viepy Docs
 nav:
   - Viepy: index.md
-  - Get Started: get_started.md
+  - Getting Started:
+    - Installation: getting_started/installation.md
+    - Creating Your First Video: getting_started/first_video.md
+  - Advanced:
+    - Pipeline: advanced/pipeline.md
+    #- Plugins: advanced/plugins.md
 
 theme:
-  name: mkdocs
+  name: shadcn
 
 extra_css:
   - css/custom.css

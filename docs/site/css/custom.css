@@ -1,3 +1,16 @@
-:root {
-    --radius: 1rem;
+h2 {
+    margin-top: .5rem;
+}
+
+.page-title-padding {
+    gap: calc(.5rem) !important;
+}
+
+.page-title-padding-normal {
+    gap: calc(1rem) !important;
+}
+
+*::view-transition {
+    display: none;
+    transition: none;
 }
