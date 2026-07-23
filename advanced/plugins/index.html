@@ -386,17 +386,16 @@
                                 <div class="h-(--top-spacing) shrink-0"></div>
                                 
                                 
-                                <article class="w-full page-title-padding-normal" view-transition-name="page">
-    <div class="flex flex-col gap-2 page-title-padding-normal">
-        <div class="flex flex-col gap-2">
-            <div id="page-header" class="flex items-start justify-between">
-                <h1 class="scroll-m-20 text-4xl font-semibold tracking-tight sm:text-3xl xl:text-4xl">
-                    Plugins
-                </h1>
-    
-                <div class="flex items-center gap-2 pt-1.5">
-                    
-                    <button
+                                <article class="w-full" view-transition-name="page">
+  <div class="flex flex-col gap-2">
+    <div class="flex flex-col gap-2">
+      <div id="page-header" class="flex items-start justify-between">
+        <h1 class="scroll-m-20 text-4xl font-semibold tracking-tight sm:text-3xl xl:text-4xl">
+          Plugins
+        </h1>
+
+        <div class="flex items-center gap-2 pt-1.5">
+          <button
     onclick="fetch(`/advanced/plugins.md`).then((r) => r.blob()).then((blob) => navigator.clipboard.write([new ClipboardItem({ 'text/plain': blob })]))"
     data-slot="button" class="secondary cursor-pointer">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -408,28 +407,27 @@
     </svg>
     <span class="max-md:hidden">Copy Page</span>
 </button>
-                    
-                    
-                    
-                </div>
-            </div>
-            
+          
+          
         </div>
-        <div class="flex justify-end items-center">
-            
-            
-        </div>
+      </div>
+      
     </div>
-    <div class="typography w-full flex-1 *:data-[slot=alert]:first:mt-0">
-        <h2 id="for-users">For Users</h2>
+    <div class="flex justify-end items-center">
+      
+      
+    </div>
+  </div>
+  <div class="typography w-full flex-1 *:data-[slot=alert]:first:mt-0">
+    <h2 id="for-users">For Users</h2>
 <h2 id="for-devs">For Devs</h2>
-    </div>
-    
-    <script>
-        document.querySelectorAll('article h2, article h3').forEach((header) => {
-            toc.observer.observe(header);
-        });
-    </script>
+  </div>
+  
+  <script>
+    document.querySelectorAll('article h2, article h3').forEach((header) => {
+      toc.observer.observe(header);
+    });
+  </script>
 </article>
                                 <div class="mx-auto flex flex-wrap h-16 w-full max-w-2xl items-center gap-2 px-4 md:px-0">
     
