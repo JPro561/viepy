@@ -19,7 +19,7 @@ To install and use Viepy, you need:
 
 *<small>More informations about installing Viepy [here](getting_started/first_video.md).</small>
 
-Then, create your first animation by following the [Getting Started guide](getting_started/basics.md).
+Then, create your first animation by following the [Getting Started guide](getting_started/installation.md).
 
 That's it! You're ready to start creating with Viepy.
 
