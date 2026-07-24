@@ -69,6 +69,8 @@
         }
     </style>
     <link href="../../css/custom.css" rel="stylesheet" />
+    <link href="../../css/dark_pygments.css" rel="stylesheet" />
+    <link href="../../css/pygments.css" rel="stylesheet" />
 
     
 
@@ -386,17 +388,18 @@
                                 <div class="h-(--top-spacing) shrink-0"></div>
                                 
                                 
-                                <article class="w-full" view-transition-name="page">
-  <div class="flex flex-col gap-2">
-    <div class="flex flex-col gap-2">
-      <div id="page-header" class="flex items-start justify-between">
-        <h1 class="scroll-m-20 text-4xl font-semibold tracking-tight sm:text-3xl xl:text-4xl">
-          Pipeline
-        </h1>
-
-        <div class="flex items-center gap-2 pt-1.5">
-          <button
-    onclick="fetch(`/advanced/pipeline.md`).then((r) => r.blob()).then((blob) => navigator.clipboard.write([new ClipboardItem({ 'text/plain': blob })]))"
+                                <article class="w-full page-title-padding" view-transition-name="page">
+    <div class="flex flex-col gap-2 page-title-padding">
+        <div class="flex flex-col gap-2">
+            <div id="page-header" class="flex items-start justify-between">
+                <h1 class="scroll-m-20 text-4xl font-semibold tracking-tight sm:text-3xl xl:text-4xl">
+                    Pipeline
+                </h1>
+    
+                <div class="flex items-center gap-2 pt-1.5">
+                    
+                    <button
+    onclick='navigator.clipboard.writeText("").catch(err => console.error("Failed to copy: ", err));'
     data-slot="button" class="secondary cursor-pointer">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tabler-icon tabler-icon-copy ">
@@ -407,39 +410,40 @@
     </svg>
     <span class="max-md:hidden">Copy Page</span>
 </button>
-          
-          <a data-slot="button" id="previous-button"
-            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-secondary text-secondary-foreground hover:bg-secondary/80 extend-touch-target size-8 shadow-none md:size-7"
-            href="../../getting_started/first_video/">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="tabler-icon tabler-icon-arrow-left">
-              <path d="M5 12l14 0"></path>
-              <path d="M5 12l6 6"></path>
-              <path d="M5 12l6 -6"></path>
-            </svg>
-            <span class="sr-only">Previous</span>
-          </a>
-          
-          
+                    
+                    
+                    <a data-slot="button" id="previous-button"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-secondary text-secondary-foreground hover:bg-secondary/80 extend-touch-target size-8 shadow-none md:size-7"
+                    href="../../getting_started/first_video/">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="tabler-icon tabler-icon-arrow-left">
+                            <path d="M5 12l14 0"></path>
+                            <path d="M5 12l6 6"></path>
+                            <path d="M5 12l6 -6"></path>
+                        </svg>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    
+                    
+                </div>
+            </div>
+            
         </div>
-      </div>
-      
+        <div class="flex justify-end items-center">
+            
+            
+        </div>
     </div>
-    <div class="flex justify-end items-center">
-      
-      
+    <div class="typography w-full flex-1 *:data-[slot=alert]:first:mt-0">
+        
     </div>
-  </div>
-  <div class="typography w-full flex-1 *:data-[slot=alert]:first:mt-0">
     
-  </div>
-  
-  <script>
-    document.querySelectorAll('article h2, article h3').forEach((header) => {
-      toc.observer.observe(header);
-    });
-  </script>
+    <script>
+        document.querySelectorAll('article h2, article h3').forEach((header) => {
+            toc.observer.observe(header);
+        });
+    </script>
 </article>
                                 <div class="mx-auto flex flex-wrap h-16 w-full max-w-2xl items-center gap-2 px-4 md:px-0">
     

@@ -1,9 +1,9 @@
-# Viepy
-
 Create music visualizers easily with Python.
 ---
 
 [GitHub](https://github.com/JPro561/viepy) | [Docs](https://jpro561.github.io/viepy/)
+
+---
 
 ## What is Viepy?
 
@@ -17,9 +17,9 @@ To install and use Viepy, you need:
 * [FFmpeg and FFprobe](https://ffmpeg.org/) installed and available in your `PATH`;
 * Basic knowledge of [Python](https://www.python.org/).
 
-*<small>More informations about installing Viepy [here](getting_started/first_video.md).</small>
+*<small>More information about installing Viepy [here](getting_started/installation.md).</small>
 
-Then, create your first animation by following the [Getting Started guide](getting_started/installation.md).
+Then, create your first animation by following the [Getting Started guide](getting_started/first_video.md).
 
 That's it! You're ready to start creating with Viepy.
 

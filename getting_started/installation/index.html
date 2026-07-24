@@ -69,6 +69,8 @@
         }
     </style>
     <link href="../../css/custom.css" rel="stylesheet" />
+    <link href="../../css/dark_pygments.css" rel="stylesheet" />
+    <link href="../../css/pygments.css" rel="stylesheet" />
 
     
 
@@ -386,17 +388,18 @@
                                 <div class="h-(--top-spacing) shrink-0"></div>
                                 
                                 
-                                <article class="w-full" view-transition-name="page">
-  <div class="flex flex-col gap-2">
-    <div class="flex flex-col gap-2">
-      <div id="page-header" class="flex items-start justify-between">
-        <h1 class="scroll-m-20 text-4xl font-semibold tracking-tight sm:text-3xl xl:text-4xl">
-          Installation
-        </h1>
-
-        <div class="flex items-center gap-2 pt-1.5">
-          <button
-    onclick="fetch(`/getting_started/installation.md`).then((r) => r.blob()).then((blob) => navigator.clipboard.write([new ClipboardItem({ 'text/plain': blob })]))"
+                                <article class="w-full page-title-padding" view-transition-name="page">
+    <div class="flex flex-col gap-2 page-title-padding">
+        <div class="flex flex-col gap-2">
+            <div id="page-header" class="flex items-start justify-between">
+                <h1 class="scroll-m-20 text-4xl font-semibold tracking-tight sm:text-3xl xl:text-4xl">
+                    Installation
+                </h1>
+    
+                <div class="flex items-center gap-2 pt-1.5">
+                    
+                    <button
+    onclick='navigator.clipboard.writeText("\n\n# Welcome\n\nWelcome to the **Viepy docs**! This Getting Started section will guide you through the basics of Viepy and help you create your first video using the library.\n\n\u003cdiv class=\"imp\" markdown\u003e\n    \u003cp class=\"imp-title\"\u003eImportant!\u003c/p\u003e\n    \u003cp\u003eViepy requires \u003cb\u003ePython 3.11 or newer\u003c/b\u003e. Older Python versions are not supported and may cause installation errors or unexpected behavior.\u003c/p\u003e\n\u003c/div\u003e\n\n# Before you begin...\n\nTo create videos, **Viepy relies on a few components** that work behind the scenes while you are creating your visualizers.\n\nBefore installing Viepy, you need to have the following installed and working on your machine:\n\n- \u003cb\u003ePython 3.11 or newer\u003c/b\u003e;\n- \u003cb\u003eFFmpeg and FFprobe\u003c/b\u003e.\n\n## FFmpeg and FFprobe\n\nViepy uses **FFmpeg** to process audio and encode the final video. It also uses **FFprobe** to read information about media files.\n\nYou need to install both tools and make sure they are available in your system\u0027s `PATH`.\n\n### Windows\n\nThere are two ways to install FFmpeg on Windows.\n\n#### Winget\n\nFirst, check if FFmpeg and FFprobe are already installed.\n\nOpen Command Prompt or PowerShell and run:\n\n```bash\nffmpeg --version\nffprobe --version\n```\n\nIf both commands display version information, FFmpeg and FFprobe are already installed and available in your PATH.\n\nIf they are not installed, run:\n\n```bash\nwinget install \"FFmpeg (Essentials Build)\"\n```\n\nAfter the installation finishes, close and reopen your terminal and run the following commands again:\n\n```bash\nffmpeg --version\nffprobe --version\n```\n\nIf both commands display version information, FFmpeg and FFprobe are ready to use.\n\n#### Manual installation\n\nIf you do not have Winget installed or prefer to install FFmpeg manually, follow these steps.\n\nFirst, download FFmpeg from the official builds page.\n\nUnder the Release Builds section, download:\n\n```\nffmpeg-release-essentials.7z\n```\n\nYou can also download it [directly here](https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.7z).\n\nAfter downloading the file, extract it.\n\nThe extracted folder contains a bin directory. This is the directory that needs to be added to your system\u0027s PATH.\n\nFor example:\n\n```\nC:\\ffmpeg\\bin\n```\n\nTo add it to your PATH:\n\n1. Press the Windows key\n2. Search for `Environment Variables`\n3. Click Edit the system environment variables\n4. Click Environment Variables\n5. Under System variables, select the `Path` variable\n6. Click Edit\n7. Click New\n8. Add the path to the FFmpeg bin directory\n9. Click OK on every window.\n\nAfter adding FFmpeg to your PATH, close and reopen your terminal.\n\nFinally, verify the installation:\n\n```bash\nffmpeg --version\nffprobe --version\n```\n\nIf both commands display version information, FFmpeg and FFprobe are correctly installed and ready for Viepy.\n\n# Installing Viepy\n\nOnce Python and FFmpeg are installed, you can install Viepy using pip.\n\u003cp style=\"margin-top: 0.75rem;\"\u003e*\u003csmall\u003eChange \u003ccode\u003emyViepyProject\u003c/code\u003e to the name of the Project you\u0027re gonna edit.\u003c/small\u003e\u003c/p\u003e\n\n## Windows\n\n## Powershell\n\n```bash\nmkdir myViepyProject\ncd myViepyProject\npython3 -m venv .venv\n.venv\\scripts\\Activate.ps1\npip install viepy\n```\n\n## Command Prompt\n\n```bash\nmkdir myViepyProject\ncd myViepyProject\npython3 -m venv .venv\n.venv\\scripts\\Activate.bat\npip install viepy\n```\n\n## Linux and Mac\n\n```bash\nmkdir myViepyProject\ncd myViepyProject\npython -m venv .venv\nsource .venv/bin/activate\npip install viepy\n```\n\n## Test it\n\nCreate the `main.py` file with this content:\n\n```python\nimport viepy\nprint(\"Viepy was successfully installed!\")\n```\n\nAnd then execute the program: \n\n```bash\npython main.py\n```\n\nThat\u0027s it! You\u0027re ready to start **vie**wing with **py**thon!\n").catch(err => console.error("Failed to copy: ", err));'
     data-slot="button" class="secondary cursor-pointer">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tabler-icon tabler-icon-copy ">
@@ -407,52 +410,151 @@
     </svg>
     <span class="max-md:hidden">Copy Page</span>
 </button>
-          
-          <a data-slot="button" id="previous-button"
-            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-secondary text-secondary-foreground hover:bg-secondary/80 extend-touch-target size-8 shadow-none md:size-7"
-            href="../..">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="tabler-icon tabler-icon-arrow-left">
-              <path d="M5 12l14 0"></path>
-              <path d="M5 12l6 6"></path>
-              <path d="M5 12l6 -6"></path>
-            </svg>
-            <span class="sr-only">Previous</span>
-          </a>
-          
-          
-          <a data-slot="button" id="next-button"
-            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-secondary text-secondary-foreground hover:bg-secondary/80 extend-touch-target size-8 shadow-none md:size-7"
-            href="../first_video/">
-            <span class="sr-only">Next</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="tabler-icon tabler-icon-arrow-right">
-              <path d="M5 12l14 0"></path>
-              <path d="M13 18l6 -6"></path>
-              <path d="M13 6l6 6"></path>
-            </svg>
-          </a>
-          
+                    
+                    
+                    <a data-slot="button" id="previous-button"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-secondary text-secondary-foreground hover:bg-secondary/80 extend-touch-target size-8 shadow-none md:size-7"
+                    href="../..">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="tabler-icon tabler-icon-arrow-left">
+                            <path d="M5 12l14 0"></path>
+                            <path d="M5 12l6 6"></path>
+                            <path d="M5 12l6 -6"></path>
+                        </svg>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    
+                    
+                    <a data-slot="button" id="next-button"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-secondary text-secondary-foreground hover:bg-secondary/80 extend-touch-target size-8 shadow-none md:size-7"
+                    href="../first_video/">
+                        <span class="sr-only">Next</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="tabler-icon tabler-icon-arrow-right">
+                            <path d="M5 12l14 0"></path>
+                            <path d="M13 18l6 -6"></path>
+                            <path d="M13 6l6 6"></path>
+                        </svg>
+                    </a>
+                    
+                </div>
+            </div>
+            
         </div>
-      </div>
-      
+        <div class="flex justify-end items-center">
+            
+            
+        </div>
     </div>
-    <div class="flex justify-end items-center">
-      
-      
+    <div class="typography w-full flex-1 *:data-[slot=alert]:first:mt-0">
+        <h1 id="welcome">Welcome</h1>
+<p>Welcome to the <strong>Viepy docs</strong>! This Getting Started section will guide you through the basics of Viepy and help you create your first video using the library.</p>
+<div class="imp" markdown>
+    <p class="imp-title">Important!</p>
+    <p>Viepy requires <b>Python 3.11 or newer</b>. Older Python versions are not supported and may cause installation errors or unexpected behavior.</p>
+</div>
+
+<h1 id="before-you-begin">Before you begin...</h1>
+<p>To create videos, <strong>Viepy relies on a few components</strong> that work behind the scenes while you are creating your visualizers.</p>
+<p>Before installing Viepy, you need to have the following installed and working on your machine:</p>
+<ul>
+<li><b>Python 3.11 or newer</b>;</li>
+<li><b>FFmpeg and FFprobe</b>.</li>
+</ul>
+<h2 id="ffmpeg-and-ffprobe">FFmpeg and FFprobe</h2>
+<p>Viepy uses <strong>FFmpeg</strong> to process audio and encode the final video. It also uses <strong>FFprobe</strong> to read information about media files.</p>
+<p>You need to install both tools and make sure they are available in your system's <code>PATH</code>.</p>
+<h3 id="windows">Windows</h3>
+<p>There are two ways to install FFmpeg on Windows.</p>
+<h4 id="winget">Winget</h4>
+<p>First, check if FFmpeg and FFprobe are already installed.</p>
+<p>Open Command Prompt or PowerShell and run:</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ffmpeg<span class="w"> </span>--version
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ffprobe<span class="w"> </span>--version
+</span></code></pre></div>
+<p>If both commands display version information, FFmpeg and FFprobe are already installed and available in your PATH.</p>
+<p>If they are not installed, run:</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>winget<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;FFmpeg (Essentials Build)&quot;</span>
+</span></code></pre></div>
+<p>After the installation finishes, close and reopen your terminal and run the following commands again:</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ffmpeg<span class="w"> </span>--version
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>ffprobe<span class="w"> </span>--version
+</span></code></pre></div>
+<p>If both commands display version information, FFmpeg and FFprobe are ready to use.</p>
+<h4 id="manual-installation">Manual installation</h4>
+<p>If you do not have Winget installed or prefer to install FFmpeg manually, follow these steps.</p>
+<p>First, download FFmpeg from the official builds page.</p>
+<p>Under the Release Builds section, download:</p>
+<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ffmpeg-release-essentials.7z
+</span></code></pre></div>
+<p>You can also download it <a href="https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.7z">directly here</a>.</p>
+<p>After downloading the file, extract it.</p>
+<p>The extracted folder contains a bin directory. This is the directory that needs to be added to your system's PATH.</p>
+<p>For example:</p>
+<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>C:\ffmpeg\bin
+</span></code></pre></div>
+<p>To add it to your PATH:</p>
+<ol>
+<li>Press the Windows key</li>
+<li>Search for <code>Environment Variables</code></li>
+<li>Click Edit the system environment variables</li>
+<li>Click Environment Variables</li>
+<li>Under System variables, select the <code>Path</code> variable</li>
+<li>Click Edit</li>
+<li>Click New</li>
+<li>Add the path to the FFmpeg bin directory</li>
+<li>Click OK on every window.</li>
+</ol>
+<p>After adding FFmpeg to your PATH, close and reopen your terminal.</p>
+<p>Finally, verify the installation:</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ffmpeg<span class="w"> </span>--version
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>ffprobe<span class="w"> </span>--version
+</span></code></pre></div>
+<p>If both commands display version information, FFmpeg and FFprobe are correctly installed and ready for Viepy.</p>
+<h1 id="installing-viepy">Installing Viepy</h1>
+<p>Once Python and FFmpeg are installed, you can install Viepy using pip.</p>
+<p style="margin-top: 0.75rem;">*<small>Change <code>myViepyProject</code> to the name of the Project you're gonna edit.</small></p>
+
+<h2 id="windows_1">Windows</h2>
+<h2 id="powershell">Powershell</h2>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>mkdir<span class="w"> </span>myViepyProject
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nb">cd</span><span class="w"> </span>myViepyProject
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>.venv<span class="se">\s</span>cripts<span class="se">\A</span>ctivate.ps1
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>pip<span class="w"> </span>install<span class="w"> </span>viepy
+</span></code></pre></div>
+<h2 id="command-prompt">Command Prompt</h2>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>mkdir<span class="w"> </span>myViepyProject
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nb">cd</span><span class="w"> </span>myViepyProject
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>.venv<span class="se">\s</span>cripts<span class="se">\A</span>ctivate.bat
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>pip<span class="w"> </span>install<span class="w"> </span>viepy
+</span></code></pre></div>
+<h2 id="linux-and-mac">Linux and Mac</h2>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>mkdir<span class="w"> </span>myViepyProject
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nb">cd</span><span class="w"> </span>myViepyProject
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>pip<span class="w"> </span>install<span class="w"> </span>viepy
+</span></code></pre></div>
+<h2 id="test-it">Test it</h2>
+<p>Create the <code>main.py</code> file with this content:</p>
+<div class="highlight"><span class="filename">Python</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">viepy</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Viepy was successfully installed!&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p>And then execute the program: </p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>python<span class="w"> </span>main.py
+</span></code></pre></div>
+<p>That's it! You're ready to start <strong>vie</strong>wing with <strong>py</strong>thon!</p>
     </div>
-  </div>
-  <div class="typography w-full flex-1 *:data-[slot=alert]:first:mt-0">
     
-  </div>
-  
-  <script>
-    document.querySelectorAll('article h2, article h3').forEach((header) => {
-      toc.observer.observe(header);
-    });
-  </script>
+    <script>
+        document.querySelectorAll('article h2, article h3').forEach((header) => {
+            toc.observer.observe(header);
+        });
+    </script>
 </article>
                                 <div class="mx-auto flex flex-wrap h-16 w-full max-w-2xl items-center gap-2 px-4 md:px-0">
     
@@ -568,6 +670,76 @@
                                 <div id="toc" view-transition-name="toc" class="no-scrollbar overflow-y-auto px-8">
     <div class="flex flex-col gap-2 p-4 pt-0 text-sm">
         <p class="text-muted-foreground bg-background sticky top-0 h-6 text-xs">On This Page</p>
+        
+        
+        
+        
+        <a href="#welcome"
+            class="text-muted-foreground hover:text-foreground data-[active=true]:text-foreground text-[0.8rem] no-underline transition-colors data-[depth=3]:pl-4 data-[depth=4]:pl-6"
+            data-active="false" data-depth="2" onClick="deferSetActiveTocLink('#welcome');">
+            Welcome
+        </a>
+        
+
+        
+        <a href="#before-you-begin"
+            class="text-muted-foreground hover:text-foreground data-[active=true]:text-foreground text-[0.8rem] no-underline transition-colors data-[depth=3]:pl-4 data-[depth=4]:pl-6"
+            data-active="false" data-depth="2" onClick="deferSetActiveTocLink('#before-you-begin');">
+            Before you begin...
+        </a>
+        
+        
+        <a href="#ffmpeg-and-ffprobe"
+            class="text-muted-foreground hover:text-foreground data-[active=true]:text-foreground text-[0.8rem] no-underline transition-colors data-[depth=3]:pl-4 data-[depth=4]:pl-6"
+            data-active="false" data-depth="3" onClick="deferSetActiveTocLink('#ffmpeg-and-ffprobe');">
+            FFmpeg and FFprobe
+        </a>
+        
+        
+
+        
+        <a href="#installing-viepy"
+            class="text-muted-foreground hover:text-foreground data-[active=true]:text-foreground text-[0.8rem] no-underline transition-colors data-[depth=3]:pl-4 data-[depth=4]:pl-6"
+            data-active="false" data-depth="2" onClick="deferSetActiveTocLink('#installing-viepy');">
+            Installing Viepy
+        </a>
+        
+        
+        <a href="#windows_1"
+            class="text-muted-foreground hover:text-foreground data-[active=true]:text-foreground text-[0.8rem] no-underline transition-colors data-[depth=3]:pl-4 data-[depth=4]:pl-6"
+            data-active="false" data-depth="3" onClick="deferSetActiveTocLink('#windows_1');">
+            Windows
+        </a>
+        
+        <a href="#powershell"
+            class="text-muted-foreground hover:text-foreground data-[active=true]:text-foreground text-[0.8rem] no-underline transition-colors data-[depth=3]:pl-4 data-[depth=4]:pl-6"
+            data-active="false" data-depth="3" onClick="deferSetActiveTocLink('#powershell');">
+            Powershell
+        </a>
+        
+        <a href="#command-prompt"
+            class="text-muted-foreground hover:text-foreground data-[active=true]:text-foreground text-[0.8rem] no-underline transition-colors data-[depth=3]:pl-4 data-[depth=4]:pl-6"
+            data-active="false" data-depth="3" onClick="deferSetActiveTocLink('#command-prompt');">
+            Command Prompt
+        </a>
+        
+        <a href="#linux-and-mac"
+            class="text-muted-foreground hover:text-foreground data-[active=true]:text-foreground text-[0.8rem] no-underline transition-colors data-[depth=3]:pl-4 data-[depth=4]:pl-6"
+            data-active="false" data-depth="3" onClick="deferSetActiveTocLink('#linux-and-mac');">
+            Linux and Mac
+        </a>
+        
+        <a href="#test-it"
+            class="text-muted-foreground hover:text-foreground data-[active=true]:text-foreground text-[0.8rem] no-underline transition-colors data-[depth=3]:pl-4 data-[depth=4]:pl-6"
+            data-active="false" data-depth="3" onClick="deferSetActiveTocLink('#test-it');">
+            Test it
+        </a>
+        
+        
+
+        
+        
+        
         
 
     </div>
