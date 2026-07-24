@@ -10,6 +10,36 @@ nav:
 
 theme:
   name: shadcn
+  custom_dir: theme/
+  highlightjs: false
 
 extra_css:
   - css/custom.css
+  - css/dark_pygments.css
+  - css/pygments.css
+
+markdown_extensions:
+  - pymdownx.highlight:
+      use_pygments: true
+      anchor_linenums: true
+      line_spans: __span
+      pygments_style: material
+      auto_title: true
+      linenums_style: pymdownx-inline
+  - pymdownx.superfences:
+
+plugins:
+  - search
+  - i18n:
+      docs_structure: folder
+      fallback_to_default: false
+      languages:
+        - locale: en_US
+          default: true
+          name: English
+          build: true
+        - locale: pt_BR
+          default: false
+          name: Português (BR)
+          build: true
+          file: .pt_BR.md

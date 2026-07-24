@@ -8,15 +8,14 @@ scene = vie.Scene(
     name="vieExample_Scene",
     width=1280,
     height=720,
-    fps=24,
+    fps=30,
     anti_aliasing=True,
     final_delay=0.2,
-    font_manager=fm
+    font_manager=fm,
 )
 
 # Audio
 music = vie.audio.Music(path="examples/assets/Viepy.mp3", name="Viepy Theme", auto_play=True, artist="TuneWave")
-
 scene.add_audio_to_channel(music, 0)
 
 # Objects
@@ -29,4 +28,4 @@ scene.add(circle, triangle, rect, text)
 scene.remove(circle)
 
 # Render to video
-open(vie.renderer.render(scene, True))
+vie.renderer.render(scene, True)

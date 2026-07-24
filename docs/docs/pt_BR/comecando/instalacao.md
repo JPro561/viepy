@@ -1,6 +1,6 @@
-# Installation
+# Instalação
 
-# Welcome
+# Bem-vindo
 
 Welcome to the **Viepy docs**! This Getting Started section will guide you through the basics of Viepy and help you create your first video using the library.
 

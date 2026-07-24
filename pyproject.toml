@@ -8,7 +8,7 @@ version = "0.0.1b0"
 authors = [
     { name = "Cleverton Júnior", email = "clevertonjuniorsantiago@gmail.com" }
 ]
-description = "Create music visualizers easily with python"
+description = "Create music visualizers easily with Python."
 requires-python = ">=3.11"
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -29,3 +29,8 @@ viepy = [
     "assets/fonts/*.ttf",
     "assets/fonts/*.otf"
 ]
+
+[project.urls]
+Repository = "https://github.com/jpro561/viepy"
+Documentation = "https://jpro561.github.io/viepy/"
+Changelog = "https://github.com/blob/main/CHANGELOG.md"

@@ -1,16 +1,118 @@
-h2 {
-    margin-top: .5rem;
+.dark {
+    --background: rgb(10, 10, 17.5) !important;
+    --color-background: var(--background) !important;
 }
 
 .page-title-padding {
-    gap: calc(.5rem) !important;
+    gap: calc(.25rem) !important;
 }
 
-.page-title-padding-normal {
-    gap: calc(1rem) !important;
+#summary {
+    margin-top: inherit;
+    --tw-leading: inherit;
+    max-width: inherit;
+    line-height: inherit;
+    color: inherit;
+}
+
+.dark .imp {
+    padding: 1rem;
+    border-radius: var(--radius);
+    background-color: rgb(25, 25, 32.5);
+    z-index: -10;
+    font-weight: 400;
+}
+
+.imp {
+    padding: 1rem;
+    border-radius: var(--radius);
+    background-color: rgb(240, 240, 240);
+    z-index: -10;
+    font-weight: 400;
+}
+
+.imp .imp-title {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.pr-2 {
+    display: block !important;
+    font-size: var(--text-sm) !important;
+    margin-block-start: 0.67em !important;
+    margin-block-end: 0.67em !important;
+    margin-inline-start: 0px !important;
+    margin-inline-end: 0px !important;
+    font-weight: var(--font-weight-medium) !important;
+    unicode-bidi: isolate !important;
+    text-decoration: inherit !important;
+}
+
+.highlight {
+    padding: 1rem;
+    font-size: var(--text-m) !important;
+    border-radius: var(--radius);
+    z-index: -10;
+    font-weight: 400;
+}
+
+.highlight .filename {
+    font-size: var(--text-xs);
+    color: rgb(100, 100, 100) !important;
+    font-weight: 600;
+}
+
+pre {
+    padding: 0 !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 0 !important;
+    font-size: var(--text-m);
+}
+
+h1 {
+    font-size: var(--text-3xl) !important;
+    margin-top: 2rem !important;
+    font-weight: 600 !important;
+}
+
+h2 {
+    font-size: var(--text-2xl) !important;
+    margin-top: 1.5rem !important;
+    font-weight: 550 !important;
+}
+
+h3 {
+    font-size: var(--text-xl) !important;
+    margin-top: 1rem !important;
+    font-weight: 500 !important;
+}
+
+h4 {
+    font-size: var(--text-lg) !important;
+    margin-top: 1rem !important;
+    font-weight: 400 !important;
+}
+
+h5 {
+    font-size: var(--text-lg) !important;
+    margin-top: 1rem !important;
+    font-weight: 350 !important;
+}
+
+hr {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    height: 2px;
 }
 
 *::view-transition {
     display: none;
     transition: none;
+}
+
+.code-title-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
 }

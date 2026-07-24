@@ -69,6 +69,8 @@
         }
     </style>
     <link href="css/custom.css" rel="stylesheet" />
+    <link href="css/dark_pygments.css" rel="stylesheet" />
+    <link href="css/pygments.css" rel="stylesheet" />
 
     
 
@@ -386,17 +388,18 @@
                                 <div class="h-(--top-spacing) shrink-0"></div>
                                 
                                 
-                                <article class="w-full" view-transition-name="page">
-  <div class="flex flex-col gap-2">
-    <div class="flex flex-col gap-2">
-      <div id="page-header" class="flex items-start justify-between">
-        <h1 class="scroll-m-20 text-4xl font-semibold tracking-tight sm:text-3xl xl:text-4xl">
-          Viepy
-        </h1>
-
-        <div class="flex items-center gap-2 pt-1.5">
-          <button
-    onclick="fetch(`/index.md`).then((r) => r.blob()).then((blob) => navigator.clipboard.write([new ClipboardItem({ 'text/plain': blob })]))"
+                                <article class="w-full page-title-padding" view-transition-name="page">
+    <div class="flex flex-col gap-2 page-title-padding">
+        <div class="flex flex-col gap-2">
+            <div id="page-header" class="flex items-start justify-between">
+                <h1 class="scroll-m-20 text-4xl font-semibold tracking-tight sm:text-3xl xl:text-4xl">
+                    Viepy
+                </h1>
+    
+                <div class="flex items-center gap-2 pt-1.5">
+                    
+                    <button
+    onclick='navigator.clipboard.writeText("Create music visualizers easily with Python.\n---\n\n[GitHub](https://github.com/JPro561/viepy) | [Docs](https://jpro561.github.io/viepy/)\n\n---\n\n## What is Viepy?\n\nViepy, or simply `vie`, is a simple library for creating music videos and visualizers with Python. It is free and easy to use.\n\n### Requirements\n\nTo install and use Viepy, you need:\n\n* [Python 3.11](https://www.python.org/downloads/) or newer;\n* [FFmpeg and FFprobe](https://ffmpeg.org/) installed and available in your `PATH`;\n* Basic knowledge of [Python](https://www.python.org/).\n\n*\u003csmall\u003eMore information about installing Viepy [here](getting_started/installation.md).\u003c/small\u003e\n\nThen, create your first animation by following the [Getting Started guide](getting_started/first_video.md).\n\nThat\u0027s it! You\u0027re ready to start creating with Viepy.\n\n\u003c!--\n## For Devs\n\n### Developing Plugins\n\nWant to extend Viepy and share your creations with the community?\nCheck out the [plugin development guide](advanced/plugins.md) to learn how to create a plugin for Viepy.\n\nIf you want to understand how Viepy works internally before developing your plugin, we strongly recommend reading the [rendering pipeline guide](advanced/pipeline.md). It explains the main steps involved in turning your Python code into a rendered video.\n--\u003e\n\n## License\n\nViepy is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).\n\nYou are free to use, modify, and distribute Viepy under the terms of the license.\n").catch(err => console.error("Failed to copy: ", err));'
     data-slot="button" class="secondary cursor-pointer">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tabler-icon tabler-icon-copy ">
@@ -407,33 +410,35 @@
     </svg>
     <span class="max-md:hidden">Copy Page</span>
 </button>
-          
-          
-          <a data-slot="button" id="next-button"
-            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-secondary text-secondary-foreground hover:bg-secondary/80 extend-touch-target size-8 shadow-none md:size-7"
-            href="getting_started/installation/">
-            <span class="sr-only">Next</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="tabler-icon tabler-icon-arrow-right">
-              <path d="M5 12l14 0"></path>
-              <path d="M13 18l6 -6"></path>
-              <path d="M13 6l6 6"></path>
-            </svg>
-          </a>
-          
+                    
+                    
+                    
+                    <a data-slot="button" id="next-button"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-secondary text-secondary-foreground hover:bg-secondary/80 extend-touch-target size-8 shadow-none md:size-7"
+                    href="getting_started/installation/">
+                        <span class="sr-only">Next</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="tabler-icon tabler-icon-arrow-right">
+                            <path d="M5 12l14 0"></path>
+                            <path d="M13 18l6 -6"></path>
+                            <path d="M13 6l6 6"></path>
+                        </svg>
+                    </a>
+                    
+                </div>
+            </div>
+            
         </div>
-      </div>
-      
+        <div class="flex justify-end items-center">
+            
+            
+        </div>
     </div>
-    <div class="flex justify-end items-center">
-      
-      
-    </div>
-  </div>
-  <div class="typography w-full flex-1 *:data-[slot=alert]:first:mt-0">
-    <h2 id="create-music-visualizers-easily-with-python">Create music visualizers easily with Python.</h2>
+    <div class="typography w-full flex-1 *:data-[slot=alert]:first:mt-0">
+        <h2 id="create-music-visualizers-easily-with-python">Create music visualizers easily with Python.</h2>
 <p><a href="https://github.com/JPro561/viepy">GitHub</a> | <a href="https://jpro561.github.io/viepy/">Docs</a></p>
+<hr />
 <h2 id="what-is-viepy">What is Viepy?</h2>
 <p>Viepy, or simply <code>vie</code>, is a simple library for creating music videos and visualizers with Python. It is free and easy to use.</p>
 <h3 id="requirements">Requirements</h3>
@@ -443,8 +448,8 @@
 <li><a href="https://ffmpeg.org/">FFmpeg and FFprobe</a> installed and available in your <code>PATH</code>;</li>
 <li>Basic knowledge of <a href="https://www.python.org/">Python</a>.</li>
 </ul>
-<p>*<small>More informations about installing Viepy <a href="getting_started/first_video/">here</a>.</small></p>
-<p>Then, create your first animation by following the <a href="getting_started/installation/">Getting Started guide</a>.</p>
+<p>*<small>More information about installing Viepy <a href="getting_started/installation/">here</a>.</small></p>
+<p>Then, create your first animation by following the <a href="getting_started/first_video/">Getting Started guide</a>.</p>
 <p>That's it! You're ready to start creating with Viepy.</p>
 <!--
 ## For Devs
@@ -460,13 +465,13 @@ If you want to understand how Viepy works internally before developing your plug
 <h2 id="license">License</h2>
 <p>Viepy is licensed under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>.</p>
 <p>You are free to use, modify, and distribute Viepy under the terms of the license.</p>
-  </div>
-  
-  <script>
-    document.querySelectorAll('article h2, article h3').forEach((header) => {
-      toc.observer.observe(header);
-    });
-  </script>
+    </div>
+    
+    <script>
+        document.querySelectorAll('article h2, article h3').forEach((header) => {
+            toc.observer.observe(header);
+        });
+    </script>
 </article>
                                 <div class="mx-auto flex flex-wrap h-16 w-full max-w-2xl items-center gap-2 px-4 md:px-0">
     
